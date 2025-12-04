@@ -18,5 +18,10 @@
   "dependencies": {
     "@types/express": "^5.0.6",
     "express": "^5.2.1"
+  },
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
   }
 }
