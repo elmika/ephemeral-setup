@@ -1,6 +1,6 @@
 # Ephemeral environments setup
 
-This project is a concept demo and practice of a pipeline setup that allows to quickly create and destroy new environements.
+This project is a concept demo and practice of a pipeline setup that allows to quickly create and destroy new environements. 
 
 ### Useful commands
 
