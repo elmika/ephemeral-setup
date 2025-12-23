@@ -10,7 +10,7 @@ app.get("/health", (_req, res) => {
 
 // GET /test
 app.get("/test", (_req, res) => {
-	console.log("Test endpoint hit at ", new Date().toISOString());
+	console.log("The test endpoint was hit at ", new Date().toISOString());
 	res.json({ message: "test logged" });
 });
 
