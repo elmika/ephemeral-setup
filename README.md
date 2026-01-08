@@ -19,3 +19,19 @@ Anótalas:
 	•	CMD debe ejecutar lo que sepa hacer tu contenedor, no tu sistema local
 
 
+Set default Google Cloud project:
+
+gcloud config set project <PROJECT_ID>
+
+Ejemplos reales:
+
+gcloud config set project devops-playground-480421
+
+y para volver a Mediala:
+
+gcloud config set project mediala-tech-platform
+
+compruébalo con:
+
+gcloud config get-value project
+
