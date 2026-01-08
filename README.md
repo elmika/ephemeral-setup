@@ -19,7 +19,7 @@ Anótalas:
 	•	CMD debe ejecutar lo que sepa hacer tu contenedor, no tu sistema local
 
 
-Set default Google Cloud project:
+# Set default Google Cloud project:
 
 gcloud config set project <PROJECT_ID>
 
@@ -35,3 +35,14 @@ compruébalo con:
 
 gcloud config get-value project
 
+# En prod
+
+Las llamadas requiere authentication:
+
+curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" \
+  "https://directory-563622924666.europe-southwest1.run.app/health"
+
+and 
+
+curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" \
+  "https://directory-563622924666.europe-southwest1.run.app/test"  
