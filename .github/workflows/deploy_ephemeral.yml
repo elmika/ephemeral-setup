@@ -1,0 +1,51 @@
+name: Deploy Ephemeral (Cloud Run)
+
+on:
+  workflow_dispatch:
+    inputs:
+      env_name:
+        description: "Environment name (e.g. stress, bench, pr-123)"
+        required: true
+        type: string
+      image_tag:
+        description: "Image tag to deploy (default: latest)"
+        required: false
+        default: "latest"
+        type: string
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  PROJECT_ID: devops-playground-480421
+  REGION: europe-southwest1
+  REPO: devops-playground
+  SERVICE_BASE: ephemeral-env
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auth to Google (OIDC)
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
+          service_account: gha-deployer@devops-playground-480421.iam.gserviceaccount.com
+
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Deploy
+        run: |
+          SERVICE="${SERVICE_BASE}-${{ inputs.env_name }}"
+          IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPO}/${SERVICE_BASE}:${{ inputs.image_tag }}"
+
+          echo "Deploying service: $SERVICE"
+          echo "Using image: $IMAGE"
+
+          gcloud run deploy "$SERVICE" \
+            --project "$PROJECT_ID" \
+            --image "$IMAGE" \
+            --region "$REGION" \
+            --allow-unauthenticated
