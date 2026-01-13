@@ -17,7 +17,7 @@ env:
   REGION: europe-southwest1
   AR_REPO: devops-playground # Artifact Registry repo name
   SERVICE_NAME: directory    # Cloud Run service name
-  IMAGE_NAME: directory      # Image name in Artifact Registry
+  IMAGE_NAME: ephemeral-env      # Image name in Artifact Registry
 
 jobs:
   deploy:
